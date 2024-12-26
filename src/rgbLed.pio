@@ -1,0 +1,49 @@
+.program rgbLed
+
+; stealing one delay bit to use for side-set
+.side_set 1 
+
+; define constant for use outside program too
+.define public Time1 3
+.define public Time2 3
+.define public Time3 4
+
+.wrap_target
+
+; will try automatic pull
+
+; looping through bits
+bit_loop:
+    out x, 1 side 0 [Time3 - 1]            ; hold data from OSR in x, set side-set to low, delay
+    jmp !x code_0 side 1  [Time1 - 1]     ; If the bit is not 1, go to code_0, delay
+; send code 1
+code_1:
+    jmp bit_loop side 1 [Time2 - 1] ; go to bit loop again, continue being high, delay
+
+; send code 0
+code_0:
+    nop side 0 [Time2 - 1] ; do nothing, set side-set to low, delay
+
+.wrap
+
+
+% c-sdk {
+#include "hardware/clocks.h"
+static inline void wave_program_init(PIO pio, uint sm, uint offset, uint pin, float freq)
+{
+    pio_gpio_init(pio, pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+    pio_sm_config c = wave_program_get_default_config(offset);
+    sm_config_set_sideset_pins(&c, pin);
+    // autopull setup
+    sm_config_set_out_shift(&c, false, true, 24);
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+    // setup global constants
+    int cycles_per_bit = wave_Time1 + wave_Time2 + wave_Time3;
+    uint clock = clock_get_hz(clk_sys);
+    float div = clock / (freq * cycles_per_bit);
+    sm_config_set_clkdiv(&c, div);
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+%}
