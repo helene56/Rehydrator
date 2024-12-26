@@ -3,14 +3,14 @@
 #include <stdio.h>
 // pio program
 #include "build/rgbLed.pio.h"
-
+// user lib
 #include "rgbLed.h"
 
 int main()
 {
     stdio_init_all();
 
-    uint const rgb_din {16};
+     constexpr uint rgb_din {16};
 
     PIO pio     = pio0;
     int sm      = 0;
@@ -19,7 +19,7 @@ int main()
 
     put_pixel((0b0 << 16) | (0b0 << 8) | 0b11111111);
 
-    uint const led {1};
+    constexpr uint led {1};
     gpio_init(led);
     gpio_set_dir(led, GPIO_OUT);
     while (true)
