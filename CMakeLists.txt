@@ -46,12 +46,18 @@ pico_enable_stdio_usb(Rehydrator 1)
 
 # Add the standard library to the build
 target_link_libraries(Rehydrator
-        pico_stdlib)
+        pico_stdlib
+        hardware_pio  # This links the PIO library
+        )
 
 # Add the standard include files to the build
 target_include_directories(Rehydrator PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/include
 )
+
+# Compile the PIO program
+pico_generate_pio_header(Rehydrator ${CMAKE_CURRENT_LIST_DIR}/src/rgbLed.pio)
 
 pico_add_extra_outputs(Rehydrator)
 
