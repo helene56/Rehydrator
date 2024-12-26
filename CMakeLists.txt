@@ -48,6 +48,7 @@ pico_enable_stdio_usb(Rehydrator 1)
 target_link_libraries(Rehydrator
         pico_stdlib
         hardware_pio  # This links the PIO library
+        hardware_adc
         )
 
 # Add the standard include files to the build
