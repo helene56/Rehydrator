@@ -57,6 +57,11 @@ target_include_directories(Rehydrator PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
+# Add your .cpp files to the list of source files
+target_sources(PixelMaster PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}/src/hydrator.cpp
+)
+
 # Compile the PIO program
 pico_generate_pio_header(Rehydrator ${CMAKE_CURRENT_LIST_DIR}/src/rgbLed.pio)
 
