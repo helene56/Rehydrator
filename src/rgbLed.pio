@@ -4,9 +4,9 @@
 .side_set 1 
 
 ; define constant for use outside program too
-.define public Time1 3
-.define public Time2 3
-.define public Time3 4
+.define public Time1 2
+.define public Time2 1
+.define public Time3 3
 
 .wrap_target
 
@@ -29,17 +29,17 @@ code_0:
 
 % c-sdk {
 #include "hardware/clocks.h"
-static inline void wave_program_init(PIO pio, uint sm, uint offset, uint pin, float freq)
+static inline void rgbLed_program_init(PIO pio, uint sm, uint offset, uint pin, float freq)
 {
     pio_gpio_init(pio, pin);
     pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
-    pio_sm_config c = wave_program_get_default_config(offset);
+    pio_sm_config c = rgbLed_program_get_default_config(offset);
     sm_config_set_sideset_pins(&c, pin);
     // autopull setup
     sm_config_set_out_shift(&c, false, true, 24);
     sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
     // setup global constants
-    int cycles_per_bit = wave_Time1 + wave_Time2 + wave_Time3;
+    int cycles_per_bit = rgbLed_Time1 + rgbLed_Time2 + rgbLed_Time3;
     uint clock = clock_get_hz(clk_sys);
     float div = clock / (freq * cycles_per_bit);
     sm_config_set_clkdiv(&c, div);
