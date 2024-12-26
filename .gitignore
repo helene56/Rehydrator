@@ -4,3 +4,11 @@ CMakeFiles/
 CMakeCache.txt
 *.cmake.user
 *.user
+build.ninja
+cmake_install.cmake
+compile_commands.json
+pico_flash_region.ld
+generated/
+pico-sdk/
+picotool/
+_deps/
