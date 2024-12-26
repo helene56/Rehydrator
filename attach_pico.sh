@@ -5,7 +5,7 @@ MESSAGE_SHOWN=false
 
 while true; do
     # Use PowerShell to list USB devices and find the correct BUSID for the Pico
-    BUSID="7-1" # Replace with your Pico's USB bus ID
+    BUSID="5-1" # Replace with your Pico's USB bus ID
 
     # Run USBIPD commands on the Windows host
     # powershell.exe -Command "& { usbipd attach --wsl --busid $BUSID }"

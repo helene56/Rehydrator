@@ -5,7 +5,7 @@ PICOTOOL="${HOME}/.pico-sdk/picotool/2.1.0/picotool/picotool"
 
 TARGET_PATH="${1}" # Pass the target path as the first argument to the script
 
-BUSID="7-1" # Replace with your Pico's USB bus ID
+BUSID="5-1" # Replace with your Pico's USB bus ID
 
 # Run USBIPD commands on the Windows host
 # powershell.exe -Command "& { usbipd attach --wsl --busid $BUSID }"
