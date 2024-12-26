@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Rehydrator main.cpp )
+add_executable(Rehydrator src/main.cpp )
 
 pico_set_program_name(Rehydrator "Rehydrator")
 pico_set_program_version(Rehydrator "0.1")
