@@ -58,7 +58,7 @@ target_include_directories(Rehydrator PRIVATE
 )
 
 # Add your .cpp files to the list of source files
-target_sources(PixelMaster PRIVATE
+target_sources(Rehydrator PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src/hydrator.cpp
 )
 
