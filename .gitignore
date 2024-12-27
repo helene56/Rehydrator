@@ -12,3 +12,5 @@ generated/
 pico-sdk/
 picotool/
 _deps/
+pioasm/
+pioasm-install/
