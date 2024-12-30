@@ -4,7 +4,7 @@
 
 namespace moisture
 {
-    constexpr double DRY {2.20f};
+    constexpr double DRY {2.00f};
     constexpr uint sensor {26}; // ADC0 attached
 
 } // namespace moisture
