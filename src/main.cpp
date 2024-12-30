@@ -40,7 +40,7 @@ int main()
         }
         else if (!lit)
         {
-            put_pixel((0b10000000 << 16) | (0b0 << 8) | 0b0);
+            put_pixel((0b0 << 16) | (0b0 << 8) | 0b10000000);
             lit = true;
         }
     }
