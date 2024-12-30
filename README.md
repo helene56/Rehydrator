@@ -7,3 +7,8 @@ Wires
 RP2040-Zero
 Resistor
 Led
+
+connections
+GPIO 26 - sensor AOUT
+GPIO 3v3 - sensor Vout
+rp2040 GND - sensor GND
